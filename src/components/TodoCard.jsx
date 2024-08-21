@@ -1,24 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-export default function TodoCard(props) {  // Renders a list item with content passed as children
-  const {children, handleDeleteTodos, index, handleEditTodos } = props
+export default function TodoCard(props) {
+  const { children, handleDeleteTodos, index, handleEditTodos } = props;
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(prevState => !prevState);
+  };
+
   return (
-    
-    <li className = 'todoItem' >
-    {children}
-    <div className='actionsContainer'>
-    <button onClick={() =>{
-      handleEditTodos(index)
-    }}>
-      <i class="fa-regular fa-pen-to-square"></i>
-    </button>
-    <button onClick={() =>{
-        handleDeleteTodos(index)
-    }}>
-      <i class="fa-solid fa-trash"></i>
-    </button>
-    
-    </div>
-    </li> // Render each todo as an <li> element
-  )
+    <li className='todoItem'>
+      <input
+        type='checkbox'
+        className='checkbox'
+        checked={isChecked}
+        onChange={handleCheckboxChange}
+      />
+      <p className={`todoText ${isChecked ? 'struck' : ''}`}>{children}</p>
+      <div className='actionsContainer'>
+        {!isChecked && (
+          <button onClick={() => handleEditTodos(index)}>
+            <i className="fa-regular fa-pen-to-square"></i>
+          </button>
+        )}
+        {isChecked && (
+          <>
+            <button onClick={() => handleDeleteTodos(index)}>
+              <i className="fa-solid fa-trash"></i>
+            </button>
+            
+          </>
+        )}
+      </div>
+    </li>
+  );
 }

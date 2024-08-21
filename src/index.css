@@ -1,9 +1,10 @@
 * {
-  font-family: 'Inter', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: bold;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #202124;
+  color: #333;
 }
 
 h1,
@@ -11,65 +12,76 @@ h2,
 h3,
 input,
 button {
-  font-family: 'Press Start 2P', system-ui;
+  font-weight: bold;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 14px;
-  background: #eff6ff;
-  gap: 14px;
+  padding: 20px;
+  background: #f0f4f8;
+  gap: 20px;
 }
 
 header {
   display: flex;
   align-items: stretch;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 14px;
 }
 
 header,
 .main {
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  gap: 14px;
+  gap: 20px;
 }
 
 header input {
   flex: 1;
-  border-radius: 14px;
+  border-radius: 8px;
   outline: none;
   width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header button {
-  border-radius: 14px;
-  background: transparent;
-  transition-duration: 200ms;
+  border-radius: 8px;
+  background: #007bff; /* Button background color */
+  color: rgb(34, 8, 8); /* Button text color */
+  transition-duration: 300ms;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #007bff; /* Button border color */
+  padding: 12px 20px; /* Padding to ensure button is large enough */
+  font-size: 1em; /* Font size for better readability */
 }
 
 header button:hover {
-  opacity: 0.7;
+  background: #a2cbf6; /* Darker background on hover */
+  border-color: #93c1f1; /* Border color on hover */
 }
 
 header button,
 header input {
   padding: 14px 18px;
-  border: none;
+  border: 1px solid #ccc;
   outline: none;
-  background: white;
+  background: #f8f9fa;
 }
 
 p {
-  font-size: 0.9em;
+  font-size: 0.95em;
+  color: #555;
 }
 
 .main {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
 .todoItem {
@@ -77,8 +89,10 @@ p {
   align-items: center;
   gap: 14px;
   padding: 14px;
-  border-radius: 14px;
-  background: white;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .todoItem p {
@@ -92,23 +106,81 @@ p {
 }
 
 .actionsContainer button {
-  transition-duration: 200ms;
-  border: none;
-  background: transparent;
+  transition-duration: 300ms;
+  border: 1px solid #ddd;
+  .todoItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+  
+  .todoItem input.checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .todoItem .todoText {
+    flex: 1;
+    transition: text-decoration 0.3s ease;
+  }
+  
+  .todoItem.struck p {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .todoItem .actionsContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .actionsContainer button {
+    transition-duration: 300ms;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 0.9em;
+    display: none; /* Hide buttons by default */
+  }
+  
+  .actionsContainer .deleteButton,
+  .actionsContainer .untickButton {
+    display: inline-block;
+  }
+  
+  .todoItem.struck .actionsContainer .deleteButton,
+  .todoItem.struck .actionsContainer .untickButton {
+    display: inline-block;
+  }
+  
+  .todoItem .editButton {
+    display: inline-block;
+  }
+  background: #f8f9fa;
   cursor: pointer;
+  border-radius: 8px;
+  padding: 8px;
 }
 
 .actionsContainer button:hover {
-  opacity: 0.7;
+  background: #e2e6ea;
+  border-color: #ccc;
 }
-
-
 
 @media (min-width: 640px) {
 
   header button,
   header input {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   p {
